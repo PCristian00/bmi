@@ -4,23 +4,25 @@
 
 using namespace std;
 
+const int MAX_M=50;
+
 struct bmi{
-    char desc[12];
+    char desc[11];
     float value;
 };
 
 static char *Calcola(float h, float w){
-    char* msg[50];
+    char* msg[MAX_M];
     bmi b{};
 
     b.value=(float) w/(h*h);
     //cout<<b.value<<endl;
 
-    if(b.value<18.5) strcpy(b.desc," Sottopeso");
-    else if(b.value>25) strcpy(b.desc," Sovrappeso");
-    else strcpy(b.desc," Normale");
+    if(b.value<18.5) strcpy(b.desc," SOTTO");
+    else if(b.value>25) strcpy(b.desc," SOVRA");
+    else strcpy(b.desc," NORMO");
 
-    snprintf(*msg, sizeof msg, "%.1f", b.value);
+    snprintf(*msg,MAX_M, "%.1f", b.value);
     //cout<<msg<<endl;
     //value=(b.value);
     strcat(*msg, b.desc);
@@ -51,10 +53,11 @@ int main() {
 
     out<<"BMI"<<endl;
     //cout<<Calcola(2.3,4.5)<<endl;
-    while(w&&h){
+    while(hd[i]!=EOF && wd[i]!=EOF){
         //cout<<"Hola\t"<<i<<endl;
         h>>hd[i];
         w>>wd[i];
+
         line=Calcola(hd[i],wd[i]);
         out<<line<<endl;
         cout<<line<<endl;
