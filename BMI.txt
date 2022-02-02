@@ -1,0 +1,4 @@
+BMI
+[1] 27.8 Sovrappeso
+[2] 15.8 Sottopeso
+[3] 23.2 Normale

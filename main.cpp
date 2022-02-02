@@ -4,63 +4,65 @@
 
 using namespace std;
 
-const int MAX_M=50;
+const int MAX_M = 60;
 
-struct bmi{
-    char desc[11];
+struct bmi {
+    char *desc;
     float value;
 };
 
-static char *Calcola(float h, float w){
-    char* msg[MAX_M];
+static char *Calcola(float h, float w) {
+    char *msg[MAX_M];
     bmi b{};
+    b.value = (float) w / (h * h);
 
-    b.value=(float) w/(h*h);
-    //cout<<b.value<<endl;
+    if (b.value < 18.5) b.desc = " Sottopeso";
+    else if (b.value > 25) b.desc = " Sovrappeso";
+    else b.desc = " Normale";
 
-    if(b.value<18.5) strcpy(b.desc," SOTTO");
-    else if(b.value>25) strcpy(b.desc," SOVRA");
-    else strcpy(b.desc," NORMO");
-
-    snprintf(*msg,MAX_M, "%.1f", b.value);
-    //cout<<msg<<endl;
-    //value=(b.value);
+    snprintf(*msg, MAX_M, "%.1f", b.value);
     strcat(*msg, b.desc);
-   /*
-    cout<<"Sono nella funzione e il tuo BMI e' "<<endl;
-    cout<<msg<<endl;
-    */
-   //cout<<*msg;
 
     return *msg;
 }
 
 int main() {
 
-    fstream h,w,out;
-    float hd[10],wd[10];
-    int i=0;
+    fstream h, w, out;
+    float hd[10], wd[10];
+    int i = 0;
     char *line;
 
-    h.open(R"(C:\Users\Thinkpad User\CLionProjects\bmi\altezza.txt)",ios::in);
-    if(!h.is_open()) cout<<"Errore apertura altezze."<<endl;
+    h.open(R"(C:\Users\Thinkpad User\CLionProjects\bmi\altezza.txt)", ios::in);
+    if (!h.is_open()) cout << "Errore apertura altezze." << endl;
 
-    w.open(R"(C:\Users\Thinkpad User\CLionProjects\bmi\peso.txt)",ios::in);
-    if(!w.is_open()) cout<<"Errore apertura peso."<<endl;
+    w.open(R"(C:\Users\Thinkpad User\CLionProjects\bmi\peso.txt)", ios::in);
+    if (!w.is_open()) cout << "Errore apertura peso." << endl;
 
-    out.open(R"(C:\Users\Thinkpad User\CLionProjects\bmi\BMI.txt)",ios::out);
-    if(!out.is_open()) cout<<"Errore apertura BMI."<<endl;
+    out.open(R"(C:\Users\Thinkpad User\CLionProjects\bmi\BMI.txt)", ios::out);
+    if (!out.is_open()) cout << "Errore apertura BMI." << endl;
 
-    out<<"BMI"<<endl;
-    //cout<<Calcola(2.3,4.5)<<endl;
-    while(hd[i]!=EOF && wd[i]!=EOF){
-        //cout<<"Hola\t"<<i<<endl;
-        h>>hd[i];
-        w>>wd[i];
+    out << "BMI" << endl;
+    cout << "BMI" << endl;
 
-        line=Calcola(hd[i],wd[i]);
-        out<<line<<endl;
-        cout<<line<<endl;
+    while (hd[i] != EOF && wd[i] != EOF) {
+
+        h >> hd[i];
+        w >> wd[i];
+
+        if(hd[i]==0||wd[i]==0){
+            cout<<endl<<"Nessun'altra coppia di valori trovata. Chiusura."<<endl;
+            break;
+        }
+
+        line = Calcola(hd[i], wd[i]);
+
+        out << "[" << i + 1 << "] ";
+        out << line << endl;
+
+        cout << "[" << i + 1 << "] ";
+        cout << line << endl;
+
         i++;
     }
     return 0;
