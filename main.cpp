@@ -4,10 +4,10 @@
 
 using namespace std;
 
-const int MAX_M=50;
+const int MAX_M=60;
 
 struct bmi{
-    char desc[11];
+    char *desc;
     float value;
 };
 
@@ -18,9 +18,9 @@ static char *Calcola(float h, float w){
     b.value=(float) w/(h*h);
     //cout<<b.value<<endl;
 
-    if(b.value<18.5) strcpy(b.desc," SOTTO");
-    else if(b.value>25) strcpy(b.desc," SOVRA");
-    else strcpy(b.desc," NORMO");
+    if(b.value<18.5) b.desc=" Sottopeso";
+    else if(b.value>25) b.desc=" Sovrappeso";
+    else b.desc=" Normale";
 
     snprintf(*msg,MAX_M, "%.1f", b.value);
     //cout<<msg<<endl;
