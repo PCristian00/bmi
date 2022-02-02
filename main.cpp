@@ -20,7 +20,7 @@ static char *Calcola(float h, float w) {
     else if (b.value > 25) b.desc = " Sovrappeso";
     else b.desc = " Normale";
 
-    snprintf(*msg, MAX_M, "%.1f", b.value);
+    snprintf(*msg, MAX_M, "%.2f", b.value);
     strcat(*msg, b.desc);
 
     return *msg;
