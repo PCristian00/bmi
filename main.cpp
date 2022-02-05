@@ -45,13 +45,13 @@ int main() {
     out << "BMI" << endl;
     cout << "BMI" << endl;
 
-    while (hd[i] != EOF && wd[i] != EOF) {
+    while (h.good() && w.good()) {
 
         h >> hd[i];
         w >> wd[i];
 
-        if(hd[i]==0||wd[i]==0){
-            cout<<endl<<"Nessun'altra coppia di valori trovata. Chiusura."<<endl;
+        if (hd[i] == 0 || wd[i] == 0) {
+            cout << endl << "Nessun'altra coppia di valori trovata. Chiusura." << endl;
             break;
         }
 
