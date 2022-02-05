@@ -2,3 +2,4 @@ BMI
 [1] 27.79 Sovrappeso
 [2] 15.78 Sottopeso
 [3] 23.18 Normale
+[4] 24.84 Normale
